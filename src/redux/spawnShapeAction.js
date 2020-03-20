@@ -11,7 +11,7 @@ export function spawnShape(shapeType, x, y) {
       break
     default:
       fillType = fillTypes.FILL_COLORS
-      break  
+      break
   }
   return {
     type: actionTypes.SPAWN_SHAPE,
@@ -24,10 +24,16 @@ export function spawnShape(shapeType, x, y) {
 
 export function spawnShapeDone(shapeType, x, y, fill) {
   let randomSize = randomSizeFromPoint(x, y)
-  let fillShape = (shapeType == SQUARE) ? fill.imageUrl : `#${fill.hex}`
+  let fillShape = '';
+  if (typeof fill == 'string') {
+    fillShape = fill;
+  } else {
+    fillShape = (shapeType == SQUARE) ? fill.imageUrl : `#${fill.hex}`
+  }
+
   return {
     type: actionTypes.SPAWN_SHAPE_SUCCESS,
     shapeType,
-    shape: {shapeType, x, y, size: randomSize, fill: fillShape}
+    shape: { shapeType, x, y, size: randomSize, fill: fillShape }
   }
 }

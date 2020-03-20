@@ -6,18 +6,10 @@ import { spawnShapeEpic } from './redux/shapeEpic';
 import circleReducer from './feature/Circle/redux/circleReducer'
 import squareReducer from './feature/Square/redux/squareReducer'
 import triangleReducer from './feature/Triangle/redux/triangleReducer'
-import { catchError, timeout} from 'rxjs/operators';
 
 
-export const rootEpic = (action$, store$, dependencies) =>
-  combineEpics(
+export const rootEpic =combineEpics(
     spawnShapeEpic
-  )(action$, store$, dependencies).pipe(
-    catchError((error, source) => {
-      let color = randomColor;
-      //if cannot load Color or Pattern then return raendom color
-      return generateRandomColor(color);
-    })
   );
 
 export const rootReducer = combineReducers({

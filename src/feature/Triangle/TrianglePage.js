@@ -1,19 +1,38 @@
 import React, { Component } from 'react';
-import { Surface } from '@react-native-community/art';
-import { Dimensions, View } from "react-native";
+import { View } from "react-native";
+import { TRIANGLE } from '../../shapeTypes';
 import Triangle from '../../shape/Triangle';
 
-const screenHeight = Math.round(Dimensions.get('window').height);
-const screenWidth = Math.round(Dimensions.get('window').width);
 
 export default class TrianglePage extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  _handleTap = (evt) => {
+    const { spawnShape } = this.props;
+    let x = evt.nativeEvent.locationX;
+    let y = evt.nativeEvent.locationY;
+    spawnShape(TRIANGLE, x, y)
+  }
+
+  _renderShapes = () => {
+    const { shape } = this.props;
+    const { shape_array} = shape;
+    return shape_array?.map((shape, index) => {
+      return <Triangle key={`CI00${index}`} x={shape.x} y={shape.y} size={shape.size} fill={shape.fill} />
+    })
+  }
+
   render() {
     return (
-      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-        <Surface width={screenWidth} height={screenHeight}>
-          <Triangle size={100} x={50} y={50} fill={"#000000"} />
-        </Surface>
+      <View onTouchEnd={this._handleTap} style={{ 
+        flex: 1, justifyContent: 'center', 
+        alignItems: 'center', 
+        backgroundColor: 'transparent' }}>
+        {this._renderShapes()}
       </View>
-    );
+    )
   }
 }

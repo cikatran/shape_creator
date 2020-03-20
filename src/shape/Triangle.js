@@ -1,20 +1,26 @@
 import React, { PureComponent } from 'react';
-import { Shape, Path, Group } from '@react-native-community/art';
-
+import { View } from 'react-native';
 
 export default class Triangle extends PureComponent {
   render() {
-    const { size, x, y, ...rest } = this.props
-
-    const triangle = Path()
-      .moveTo(0, 0)
-      .lineTo(0, size)
-      .lineTo(size, size)
-      .close()
+    const { size, x, y, fill } = this.props
     return (
-      <Group x={x} y={y}>
-        <Shape {...rest} d={triangle} />
-      </Group>
+      <View style={{
+        width: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderLeftWidth: size / 2,
+        borderRightWidth: size / 2,
+        borderBottomWidth: size,
+        borderLeftColor: 'transparent',
+        borderRightColor: 'transparent',
+        borderBottomColor: 'red',
+        position: 'absolute',
+        top: y - size / 2,
+        left: x - size / 2,
+        backgroundColor: fill
+      }} />
     )
 
   }

@@ -4,7 +4,7 @@ import { spawnShape } from '../../redux/spawnShapeAction';
 
 function mapStateToProps(state) {
     return {
-        shape_array: state.shape_array,
+        shape: state.triangleReducer,
     }
 }
 
