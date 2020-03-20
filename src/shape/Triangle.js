@@ -15,11 +15,10 @@ export default class Triangle extends PureComponent {
         borderBottomWidth: size,
         borderLeftColor: 'transparent',
         borderRightColor: 'transparent',
-        borderBottomColor: 'red',
+        borderBottomColor: fill,
         position: 'absolute',
         top: y - size / 2,
         left: x - size / 2,
-        backgroundColor: fill
       }} />
     )
 

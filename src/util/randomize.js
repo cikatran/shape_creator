@@ -1,4 +1,5 @@
 import { Dimensions } from "react-native";
+import { SQUARE, TRIANGLE, CIRCLE } from "../shapeTypes";
 
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -27,4 +28,16 @@ export function randomColor() {
   + (Math.floor(Math.random() * 256)) + ',' 
   + (Math.floor(Math.random() * 256)) + ')';
   return colorCode;
+}
+
+export function randomShape() {
+  let randomNumber = Math.floor(Math.random() * 3) + 1 ;
+  switch (randomNumber) {
+    case 1:
+      return SQUARE
+    case 2:
+      return CIRCLE
+    default:
+      return TRIANGLE    
+  }
 }

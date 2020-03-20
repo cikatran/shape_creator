@@ -21,7 +21,7 @@ export default class TrianglePage extends Component {
     const { shape } = this.props;
     const { shape_array} = shape;
     return shape_array?.map((shape, index) => {
-      return <Triangle key={`CI00${index}`} x={shape.x} y={shape.y} size={shape.size} fill={shape.fill} />
+      return <Triangle key={`TR00${index}`} x={shape.x} y={shape.y} size={shape.size} fill={shape.fill} />
     })
   }
 

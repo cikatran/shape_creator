@@ -13,7 +13,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import SquarePage from './src/feature/Square';
 import CirclePage from './src/feature/Circle';
 import TrianglePage from './src/feature/Triangle';
-import AllPage from './src/feature/all/AllPage';
+import AllPage from './src/feature/All';
 import configureStore from './src/configureStore';
 
 const Tab = createBottomTabNavigator();

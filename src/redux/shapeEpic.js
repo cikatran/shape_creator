@@ -11,7 +11,7 @@ export const spawnShapeEpic = action$ => action$.pipe(
   ofType(SPAWN_SHAPE),
   mergeMap(action => loadFill(action.fillType).pipe(
     map(fill => spawnShapeDone(action.shapeType, action.x, action.y, fill[0])),
-    timeout(2000),
+    timeout(4000),
     catchError(error => {
       let fill = randomColor();
       return of(spawnShapeDone(action.shapeType, action.x, action.y, fill))

@@ -6,6 +6,7 @@ import { spawnShapeEpic } from './redux/shapeEpic';
 import circleReducer from './feature/Circle/redux/circleReducer'
 import squareReducer from './feature/Square/redux/squareReducer'
 import triangleReducer from './feature/Triangle/redux/triangleReducer'
+import allReducer from './feature/All/redux/allReducer'
 
 
 export const rootEpic =combineEpics(
@@ -15,5 +16,6 @@ export const rootEpic =combineEpics(
 export const rootReducer = combineReducers({
   squareReducer,
   circleReducer,
-  triangleReducer
+  triangleReducer,
+  allReducer
 });
