@@ -1,19 +1,32 @@
 import React, { PureComponent, Component } from 'react';
-import { ImageBackground, Image } from 'react-native';
+import { View, Image } from 'react-native';
 
 export default class Square extends PureComponent {
 
   render() {
     const { size, x, y, fill } = this.props
+    let backgroundColor = 'transparent'
+    if (fill.startsWith('rgb')) {
+      backgroundColor = fill
+    }
     return (
-      <Image source={{ uri: fill }} style={{
+      <View style={{
         height: size,
         width: size,
         position: 'absolute',
         top: y - size / 2,
         left: x - size / 2,
-        backgroundColor: fill
-      }} />
+        backgroundColor: backgroundColor
+      }}>
+        <Image source={{ uri: fill }} style={{
+          height: size,
+          width: size,
+          position: 'absolute',
+          top: y - size / 2,
+          left: x - size / 2,
+        }} />
+      </View>
+
     )
   }
 }
