@@ -1,39 +1,69 @@
 import * as actionTypes from '../actionTypes'
-import { randomSizeFromPoint } from '../util/randomize';
-import { SQUARE } from '../shapeTypes';
+import { randomSizeFromPoint, randomShape } from '../util/randomize';
+import { SQUARE, RANDOM } from '../shapeTypes';
 import * as fillTypes from '../fillTypes';
 
 export function spawnShape(shapeType, x, y) {
-  let fillType = '';
-  switch (shapeType) {
-    case SQUARE:
-      fillType = fillTypes.FILL_PATTERNS
-      break
-    default:
-      fillType = fillTypes.FILL_COLORS
-      break
+  let randomShapeType = null
+  if (shapeType == RANDOM) {
+    randomShapeType = randomShape()
   }
   return {
     type: actionTypes.SPAWN_SHAPE,
     x,
     y,
     shapeType,
-    fillType
+    fillType: getFillType(shapeType, randomShapeType),
+    randomShapeType
   }
 }
 
-export function spawnShapeDone(shapeType, x, y, fill) {
+export function spawnShapeDone(shapeType, x, y, fill, randomShapeType) {
   let randomSize = randomSizeFromPoint(x, y)
-  let fillShape = '';
-  if (typeof fill == 'string') {
-    fillShape = fill;
-  } else {
-    fillShape = (shapeType == SQUARE) ? fill.imageUrl : `#${fill.hex}`
-  }
-
   return {
     type: actionTypes.SPAWN_SHAPE_SUCCESS,
     shapeType,
-    shape: { shapeType, x, y, size: randomSize, fill: fillShape }
+    shape: { shapeType, x, y, size: randomSize, fill: getFillShape(fill, shapeType, randomShapeType) },
+    randomShapeType
+  }
+}
+
+
+export function changeShapeBackground(shapeType, index) {
+
+  return {
+    type: actionTypes.CHANGE_SHAPE_BACKGROUND,
+    index,
+    fillType: getFillType(shapeType),
+    shapeType
+  }
+}
+
+export function changeShapeBackgroundDone(shapeType, fill, index) {
+  console.log(shapeType)
+  return {
+    type: actionTypes.CHANGE_SHAPE_BACKGROUND_DONE,
+    shapeType,
+    index,
+    fill: getFillShape(fill, shapeType)
+  }
+}
+
+function getFillShape(fill, shapeType, randomShapeType) {
+  let type = randomShapeType == null ? shapeType : randomShapeType
+  if (typeof fill == 'string') {
+    return fill;
+  } else {
+    return (type == SQUARE) ? fill.imageUrl : `#${fill.hex}`
+  }
+}
+
+function getFillType(shapeType, randomShapeType) {
+  let type = randomShapeType == null ? shapeType : randomShapeType
+  switch (type) {
+    case SQUARE:
+      return fillTypes.FILL_PATTERNS
+    default:
+      return fillTypes.FILL_COLORS
   }
 }

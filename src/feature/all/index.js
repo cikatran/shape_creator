@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import { spawnShape } from '../../redux/spawnShapeAction';
+import { spawnShape, changeShapeBackground } from '../../redux/spawnShapeAction';
 import AllPage from './AllPage';
 
 function mapStateToProps(state) {
@@ -10,7 +10,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        spawnShape: (shapeType, x, y) => dispatch(spawnShape(shapeType, x, y)),
+        spawnShape: (shapeType, x, y, fillType) => dispatch(spawnShape(shapeType, x, y, fillType)),
+        changeShapeBackground: (shapeType, index) => dispatch(changeShapeBackground(shapeType, index))
     }
 }
 

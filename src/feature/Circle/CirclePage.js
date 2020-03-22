@@ -18,19 +18,30 @@ export default class CirclePage extends Component {
   }
 
   _renderShapes = () => {
-    const { shape } = this.props;
-    const { shape_array} = shape;
+    const { shape, changeShapeBackground } = this.props;
+    const { shape_array } = shape;
     return shape_array?.map((shape, index) => {
-      return <Circle key={`CI00${index}`} x={shape.x} y={shape.y} radius={shape.size} fill={shape.fill} />
+      return (
+        <Circle key={`CI00${index}`}
+          x={shape.x}
+          y={shape.y}
+          radius={shape.size}
+          fill={shape.fill}
+          onDoubleTap={() => changeShapeBackground(CIRCLE, index)} />
+      )
     })
   }
 
   render() {
     return (
-      <View onTouchEnd={this._handleTap} style={{ 
-        flex: 1, justifyContent: 'center', 
-        alignItems: 'center', 
-        backgroundColor: 'transparent' }}>
+      <View
+        onStartShouldSetResponder={() => true}
+        onResponderRelease={this._handleTap}
+        style={{
+          flex: 1, justifyContent: 'center',
+          alignItems: 'center',
+          backgroundColor: 'transparent'
+        }}>
         {this._renderShapes()}
       </View>
     )
