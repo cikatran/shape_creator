@@ -15,6 +15,17 @@ export default function circleReducer(state = initialState, action) {
                     shape_array: [...state.shape_array, action.shape]
                 };
             return state
+        case actionTypes.CHANGE_SHAPE_BACKGROUND_DONE:
+            if (action.shapeType == CIRCLE) {
+                let shape_array = [...state.shape_array];
+                let updatedItem = shape_array.find((shape, index) => { return index === action.index })
+                updatedItem.fill = action.fill
+                return {
+                    ...state,
+                    ...shape_array
+                };
+            } else
+                return state
         case actionTypes.REMOVE_SHAPES:
             return {
                 shape_array: []

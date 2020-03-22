@@ -1,26 +1,30 @@
 import * as actionTypes from '../actionTypes'
-import { randomSizeFromPoint } from '../util/randomize';
-import { SQUARE } from '../shapeTypes';
+import { randomSizeFromPoint, randomShape } from '../util/randomize';
+import { SQUARE, RANDOM } from '../shapeTypes';
 import * as fillTypes from '../fillTypes';
 
 export function spawnShape(shapeType, x, y) {
+  let randomShapeType = null
+  if (shapeType == RANDOM) {
+    randomShapeType = randomShape()
+  }
   return {
     type: actionTypes.SPAWN_SHAPE,
     x,
     y,
     shapeType,
-    fillType: getFillType(shapeType)
+    fillType: getFillType(shapeType, randomShapeType),
+    randomShapeType
   }
 }
 
-export function spawnShapeDone(shapeType, x, y, fill) {
+export function spawnShapeDone(shapeType, x, y, fill, randomShapeType) {
   let randomSize = randomSizeFromPoint(x, y)
-
-
   return {
     type: actionTypes.SPAWN_SHAPE_SUCCESS,
     shapeType,
-    shape: { shapeType, x, y, size: randomSize, fill: getFillShape(fill, shapeType) }
+    shape: { shapeType, x, y, size: randomSize, fill: getFillShape(fill, shapeType, randomShapeType) },
+    randomShapeType
   }
 }
 
@@ -45,16 +49,18 @@ export function changeShapeBackgroundDone(shapeType, fill, index) {
   }
 }
 
-function getFillShape(fill, shapeType) {
+function getFillShape(fill, shapeType, randomShapeType) {
+  let type = randomShapeType == null ? shapeType : randomShapeType
   if (typeof fill == 'string') {
     return fill;
   } else {
-    return (shapeType == SQUARE) ? fill.imageUrl : `#${fill.hex}`
+    return (type == SQUARE) ? fill.imageUrl : `#${fill.hex}`
   }
 }
 
-function getFillType(shapeType) {
-  switch (shapeType) {
+function getFillType(shapeType, randomShapeType) {
+  let type = randomShapeType == null ? shapeType : randomShapeType
+  switch (type) {
     case SQUARE:
       return fillTypes.FILL_PATTERNS
     default:

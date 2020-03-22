@@ -31,7 +31,7 @@ export default class AllPage extends Component {
               y={shape.y}
               size={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(SQUARE, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
           )
         case CIRCLE:
           return (
@@ -40,7 +40,7 @@ export default class AllPage extends Component {
               y={shape.y}
               radius={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(CIRCLE, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
           )
         default:
           return (
@@ -49,7 +49,7 @@ export default class AllPage extends Component {
               y={shape.y}
               size={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(TRIANGLE, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
           )
       }
 
