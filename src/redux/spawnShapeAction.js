@@ -29,23 +29,24 @@ export function spawnShapeDone(shapeType, x, y, fill, randomShapeType) {
 }
 
 
-export function changeShapeBackground(shapeType, index) {
+export function changeShapeBackground(shapeType, index, randomShapeType) {
 
   return {
     type: actionTypes.CHANGE_SHAPE_BACKGROUND,
     index,
-    fillType: getFillType(shapeType),
-    shapeType
+    fillType: getFillType(shapeType, randomShapeType),
+    shapeType,
+    randomShapeType
   }
 }
 
-export function changeShapeBackgroundDone(shapeType, fill, index) {
-  console.log(shapeType)
+export function changeShapeBackgroundDone(shapeType, fill, index, randomShapeType) {
+
   return {
     type: actionTypes.CHANGE_SHAPE_BACKGROUND_DONE,
     shapeType,
     index,
-    fill: getFillShape(fill, shapeType)
+    fill: getFillShape(fill, shapeType, randomShapeType)
   }
 }
 

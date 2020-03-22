@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Square from "../../shape/Square";
 import { View } from "react-native";
-import { RANDOM, SQUARE, CIRCLE } from '../../shapeTypes';
+import { RANDOM, SQUARE, CIRCLE, TRIANGLE } from '../../shapeTypes';
 import Circle from '../../shape/Circle';
 import Triangle from '../../shape/Triangle';
 import GesturedBound from '../../util/GesturedBound';
@@ -31,7 +31,7 @@ export default class AllPage extends Component {
               y={shape.y}
               size={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index, SQUARE)} />
           )
         case CIRCLE:
           return (
@@ -40,7 +40,7 @@ export default class AllPage extends Component {
               y={shape.y}
               radius={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index, CIRCLE)} />
           )
         default:
           return (
@@ -49,7 +49,7 @@ export default class AllPage extends Component {
               y={shape.y}
               size={shape.size}
               fill={shape.fill}
-              onDoubleTap={() => changeShapeBackground(RANDOM, index)} />
+              onDoubleTap={() => changeShapeBackground(RANDOM, index, TRIANGLE)} />
           )
       }
 

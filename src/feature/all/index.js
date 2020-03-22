@@ -11,7 +11,7 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         spawnShape: (shapeType, x, y, fillType) => dispatch(spawnShape(shapeType, x, y, fillType)),
-        changeShapeBackground: (shapeType, index) => dispatch(changeShapeBackground(shapeType, index))
+        changeShapeBackground: (shapeType, index, randomShapeType) => dispatch(changeShapeBackground(shapeType, index, randomShapeType))
     }
 }
 
