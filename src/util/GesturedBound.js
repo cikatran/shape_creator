@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { PanResponder, View } from 'react-native';
+import { PanResponder, View, Animated } from 'react-native';
+import { Easing } from 'react-native-reanimated';
 
 export default class GesturedBound extends Component {
   static defaultProps = {
@@ -33,6 +34,16 @@ export default class GesturedBound extends Component {
       onPanResponderTerminationRequest: evt => true,
       onShouldBlockNativeResponder: evt => false
     });
+
+    this._animated = new Animated.Value(0);
+  }
+
+  componentDidMount() {
+    Animated.timing(this._animated, {
+      toValue: 1,
+      duration: 250,
+
+    }).start();
   }
 
 
@@ -106,9 +117,11 @@ export default class GesturedBound extends Component {
 
   render() {
     return (
-      <View
+      <Animated.View
         {...this.gestureHandlers.panHandlers}
-        style={[this.props.style, {
+        opacity= {this._animated}
+        style={[this.props.style,
+        {
           transform: [
             { scaleX: this.state.scale },
             { scaleY: this.state.scale },
@@ -118,7 +131,7 @@ export default class GesturedBound extends Component {
         }]}
       >
         {this.props.children}
-      </View>
+      </Animated.View>
     );
   }
 }

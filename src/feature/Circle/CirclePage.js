@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from "react-native";
 import { CIRCLE } from '../../shapeTypes';
 import Circle from '../../shape/Circle';
+import RNShake from 'react-native-shake';
 
 
 export default class CirclePage extends Component {

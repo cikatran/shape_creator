@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { RANDOM, SQUARE, CIRCLE, TRIANGLE } from '../../shapeTypes';
 import Circle from '../../shape/Circle';
 import Triangle from '../../shape/Triangle';
-import GesturedBound from '../../util/GesturedBound';
+import RNShake from 'react-native-shake';
 
 
 export default class AllPage extends Component {

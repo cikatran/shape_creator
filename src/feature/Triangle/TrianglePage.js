@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from "react-native";
 import { TRIANGLE } from '../../shapeTypes';
 import Triangle from '../../shape/Triangle';
+import RNShake from 'react-native-shake';
 
 
 export default class TrianglePage extends Component {
