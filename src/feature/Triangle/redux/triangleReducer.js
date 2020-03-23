@@ -27,11 +27,14 @@ export default function triangleReducer(state = initialState, action) {
                 };
             } else
                 return state
-                
+
         case actionTypes.REMOVE_SHAPES:
-            return {
-                shape_array: []
-            };
+            if (action.shapeType == TRIANGLE) {
+                return {
+                    shape_array: []
+                };
+            } else
+                return state
         default:
             return state
     }

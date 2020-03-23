@@ -12,6 +12,13 @@ export default class AllPage extends Component {
     super(props)
   }
 
+  componentDidMount() {
+    const { removeAllShape } = this.props;
+    RNShake.addEventListener('ShakeEvent', () => {
+      removeAllShape(RANDOM);
+    });
+  }
+
   _handleTap = (evt) => {
     const { spawnShape } = this.props;
     let x = evt.nativeEvent.locationX;

@@ -2,14 +2,21 @@ import React, { Component } from 'react';
 import { View } from "react-native";
 import { SQUARE } from '../../shapeTypes';
 import Square from '../../shape/Square';
-import GesturedBound from '../../util/GesturedBound';
-
+import RNShake from 'react-native-shake';
 
 
 export default class SquarePage extends Component {
 
   constructor(props) {
     super(props);
+    
+  }
+
+  componentDidMount() {
+    const { removeAllShape } = this.props;
+    RNShake.addEventListener('ShakeEvent', () => {
+      removeAllShape(SQUARE);
+    });
   }
 
   _handleTap = (evt) => {

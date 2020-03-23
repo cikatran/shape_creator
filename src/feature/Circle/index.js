@@ -1,5 +1,5 @@
 import {connect} from 'react-redux';
-import { spawnShape, changeShapeBackground } from '../../redux/spawnShapeAction';
+import { spawnShape, changeShapeBackground, removeAllShape } from '../../redux/spawnShapeAction';
 import CirclePage from './CirclePage';
 
 function mapStateToProps(state) {
@@ -11,7 +11,8 @@ function mapStateToProps(state) {
 function mapDispatchToProps(dispatch) {
     return {
         spawnShape: (shapeType, x, y, fillType) => dispatch(spawnShape(shapeType, x, y, fillType)),
-        changeShapeBackground: (shapeType, index) => dispatch(changeShapeBackground(shapeType, index))
+        changeShapeBackground: (shapeType, index) => dispatch(changeShapeBackground(shapeType, index)),
+        removeAllShape: (shapeType) => dispatch(removeAllShape(shapeType))
     }
 }
 

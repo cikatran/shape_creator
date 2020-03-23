@@ -50,6 +50,13 @@ export function changeShapeBackgroundDone(shapeType, fill, index, randomShapeTyp
   }
 }
 
+export function removeAllShape(shapeType) {
+  return {
+    type: actionTypes.REMOVE_SHAPES,
+    shapeType
+  }
+}
+
 function getFillShape(fill, shapeType, randomShapeType) {
   let type = randomShapeType == null ? shapeType : randomShapeType
   if (typeof fill == 'string') {

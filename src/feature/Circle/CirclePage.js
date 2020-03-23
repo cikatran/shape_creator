@@ -10,6 +10,13 @@ export default class CirclePage extends Component {
     super(props);
   }
 
+  componentDidMount() {
+    const { removeAllShape } = this.props;
+    RNShake.addEventListener('ShakeEvent', () => {
+      removeAllShape(CIRCLE);
+    });
+  }
+
   _handleTap = (evt) => {
     const { spawnShape } = this.props;
     let x = evt.nativeEvent.locationX;
